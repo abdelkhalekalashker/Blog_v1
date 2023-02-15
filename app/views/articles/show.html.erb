@@ -1,0 +1,14 @@
+<div class="p-3 m-1 bg-light border  row d-flex justify-content-center">
+
+<h2 align="center">Title: <%= @article.title.capitalize %></h2>
+<div class="col-md-9"> 
+<h4 class="d-flex"><strong>Description:</strong></h4>
+ <hr>
+ <%= @article.description.capitalize %>
+ <div class="text-center">
+ <%= link_to "Edit", edit_article_path(@article), class: "btn btn-xs btn-warning" %> |
+ <%= link_to 'Delete', article_path(@article),method:"delete" ,class: "btn btn-xs btn-danger" %>
+ </div>
+ <br>
+ </div>
+ </div>
