@@ -38,13 +38,13 @@ end
 
 def destroy
   @article.destroy
-  flash[:notice] = "Article was deleted"
+  # flash[:notice] = "Article was deleted"
   redirect_to articles_path
 end
 
 private
   def article_params
-   params.require(:article).permit(:title, :description)
+   params.require(:article).permit(:title, :description,:user_id)
   end
   
   def set_article
