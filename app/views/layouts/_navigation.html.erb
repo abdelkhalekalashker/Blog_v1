@@ -1,6 +1,5 @@
-<div class="container text-center">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-md">
     <%= link_to "BLOG", root_path,class:"navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,8 +20,9 @@
             name
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><%= link_to "Profile" ,articles_path, class:"dropdown-item" %></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><%= link_to "Profile" ,user_path(User.last), class:"dropdown-item" %></li>
+          <li><%= link_to "Edit Profile" ,edit_user_path(User.last), class:"dropdown-item" %></li>
+          <li><%= link_to  "Sign up" , signup_path, class: "dropdown-item"  %></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Log out</a></li>
           </ul>
@@ -36,4 +36,3 @@
     </div>
   </div>
 </nav>
-</div>

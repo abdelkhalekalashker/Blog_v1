@@ -1,0 +1,14 @@
+<% obj.each do |article| %>
+  <div class="p-3 m-3 bg-light bg-gradient border rounded-3 row d-flex justify-content-center">
+
+      <h5 align="center"> <%= article.title.capitalize %> </h5>
+      <div align="center" class="col-md-9"> 
+          <%= article.description.capitalize %>
+          <div class="text-center">
+              <%= link_to "Show", article_path(article), class: "btn btn-xs btn-info" %> |
+              <%= link_to "Edit", edit_article_path(article), class: "btn btn-xs btn-warning" %> |
+              <%= button_to "Delete", article_path(article), method: :delete, class: "btn btn-xs btn-danger" %>
+              </div>
+      </div>
+  </div>
+<% end %>
