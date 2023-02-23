@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def destroy
     current_user.destroy
     flash[:notice] = "user was deleted"
-    redirect_to root_path
+    redirect_to login_path
 
   end
 
