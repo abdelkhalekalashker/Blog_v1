@@ -33,7 +33,7 @@ def edit
 end
 
 def index
-  @articles = Article.all
+  @pagy, @articles = pagy(Article.all,items:5)
 end
 
 def destroy

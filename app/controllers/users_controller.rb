@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @pagy, @users = pagy(User.all,items: 2)
   end
 
-  def show  
-    @user = User.last
-  end
+  def show
+    @user = User.find(params[:id])
+    @pagy , @user_articles = pagy(@user.articles,items:2)
+   end
 
   def update
-    @user = User.last
+    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "user was updated"
       redirect_to user_path(@user)
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.last
+    @user = User.find(params[:id])
   end
 
   def create

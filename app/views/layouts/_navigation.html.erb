@@ -20,11 +20,11 @@
             name
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><%= link_to "Profile" ,user_path(User.last), class:"dropdown-item" %></li>
-          <li><%= link_to "Edit Profile" ,edit_user_path(User.last), class:"dropdown-item" %></li>
+          <li><%= link_to "Profile" ,user_path(current_user), class:"dropdown-item" %></li>
+          <li><%= link_to "Edit Profile" ,edit_user_path(current_user), class:"dropdown-item" %></li>
           <li><%= link_to  "Sign up" , signup_path, class: "dropdown-item"  %></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Log out</a></li>
+            <li><%= button_to "Log out", logout_path, method: :delete, class:"dropdown-item" %></li>
           </ul>
         </li>
        
