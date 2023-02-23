@@ -5,11 +5,15 @@
       <h5 align="center"> <%= article.title.capitalize %> </h5>
       <div align="center" class="col-md-9"> 
           <%= article.description.capitalize %>
-          <div class="text-center">
-              <%= link_to "Show", article_path(article), class: "btn btn-xs btn-info" %> |
-              <%= link_to "Edit", edit_article_path(article), class: "btn btn-xs btn-warning" %> |
-              <%= button_to "Delete", article_path(article), method: :delete, class: "btn btn-xs btn-danger" %>
-              </div>
+          <div align="center">
+            <div  class="btn-group">
+              <%= link_to "Show", article_path(article), class: "btn btn-xs btn-info" %> 
+              <% if !!current_user && current_user.id == article.user_id%>
+                |<%= link_to "Edit", edit_article_path(article), class: "btn btn-xs btn-warning" %> 
+                |<%= button_to "Delete", article_path(article), method: :delete, class: "btn btn-xs btn-danger" %>
+              <%end%>
+            </div>
+          </div> 
       </div>
   </div>
 <% end %>

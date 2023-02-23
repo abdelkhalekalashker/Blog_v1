@@ -9,7 +9,7 @@ class UsersController < ApplicationController
    end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.update(user_params)
       flash[:notice] = "user was updated"
       redirect_to user_path(@user)
@@ -24,23 +24,24 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def create
-    
-    @user = User.new(user_params)
-    if @user.save!
-      flash[:notice] = "user was created"
-      redirect_to root_path
-    else
-      flash[:notice] = "user was not created"
-      render new
+    unless current_user
+      @user = User.new(user_params)
+      if @user.save!
+        flash[:notice] = "user was created"
+        redirect_to root_path
+      else
+        flash[:notice] = "user was not created"
+        render new
+      end
     end
   end
 
   def destroy
-    @user.destroy
+    current_user.destroy
     flash[:notice] = "user was deleted"
     redirect_to root_path
 
@@ -53,8 +54,5 @@ class UsersController < ApplicationController
 
   end
 
-  def set_user
-      @user = User.find(params[:id])
-  end
 
 end

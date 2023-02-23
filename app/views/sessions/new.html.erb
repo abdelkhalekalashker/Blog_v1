@@ -1,4 +1,6 @@
-<%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
+<% unless current_user %>
+
+  <%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
     <div class="form-group">
      <div class="control-label col-sm-2">
       <%= f.label :email %>
@@ -20,4 +22,9 @@
       <%= f.submit "Log in", class: 'btn btn-primary btn-large' %>
      </div>
     </div>
-<% end %>
+  <% end %>
+
+<%else%>
+    
+  invalid action please, <%= button_to "logout", logout_path,class:"btn btn-xs btn-danger inline"%> from current session first
+<%end%>

@@ -7,7 +7,7 @@ end
 
 def create
   @article = Article.new(article_params)
-  @article.user = User.first
+  @article.user = current_user
   if @article.save
    flash[:notice] = "Article was successfully created"
    redirect_to article_path(@article)
@@ -20,12 +20,14 @@ def show
 end
 
 def update
-  if @article.update(article_params)
-   flash[:notice] = "Article was updated"
-   redirect_to article_path(@article)
-  else
-   flash[:notice] = "Article was not updated"
-   render 'edit'
+  if current_user.id == @article.user_id
+    if @article.update(article_params)
+    flash[:notice] = "Article was updated"
+    redirect_to article_path(@article)
+    else
+    flash[:notice] = "Article was not updated"
+    render 'edit'
+    end
   end
 end
 
@@ -37,9 +39,11 @@ def index
 end
 
 def destroy
-  @article.destroy
-  # flash[:notice] = "Article was deleted"
-  redirect_to articles_path
+  if current_user.id == @article.user_id
+    @article.destroy
+    # flash[:notice] = "Article was deleted"
+    redirect_to articles_path
+  end
 end
 
 private
